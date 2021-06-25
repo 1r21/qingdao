@@ -1,0 +1,100 @@
+{
+  "id": "2188556",
+  "name": "ibelieve",
+  "font_family": "iconfont",
+  "css_prefix_text": "i-",
+  "description": "english learning",
+  "glyphs": [
+    {
+      "icon_id": "4472458",
+      "name": "down",
+      "font_class": "down",
+      "unicode": "e70c",
+      "unicode_decimal": 59148
+    },
+    {
+      "icon_id": "5177880",
+      "name": "啤酒",
+      "font_class": "beer",
+      "unicode": "e60f",
+      "unicode_decimal": 58895
+    },
+    {
+      "icon_id": "8789474",
+      "name": "translater",
+      "font_class": "translater",
+      "unicode": "e639",
+      "unicode_decimal": 58937
+    },
+    {
+      "icon_id": "6867931",
+      "name": "warning",
+      "font_class": "jinggao",
+      "unicode": "e613",
+      "unicode_decimal": 58899
+    },
+    {
+      "icon_id": "10527196",
+      "name": "home",
+      "font_class": "home",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    },
+    {
+      "icon_id": "15434317",
+      "name": "翻译",
+      "font_class": "fanyi",
+      "unicode": "e657",
+      "unicode_decimal": 58967
+    },
+    {
+      "icon_id": "1304878",
+      "name": "关闭",
+      "font_class": "close",
+      "unicode": "e620",
+      "unicode_decimal": 58912
+    },
+    {
+      "icon_id": "441567",
+      "name": "上一首(细)",
+      "font_class": "prev",
+      "unicode": "e65d",
+      "unicode_decimal": 58973
+    },
+    {
+      "icon_id": "921175",
+      "name": "暂停",
+      "font_class": "pause",
+      "unicode": "e6d7",
+      "unicode_decimal": 59095
+    },
+    {
+      "icon_id": "2080062",
+      "name": "上一首(细)",
+      "font_class": "next",
+      "unicode": "e604",
+      "unicode_decimal": 58884
+    },
+    {
+      "icon_id": "2201907",
+      "name": "播放",
+      "font_class": "play",
+      "unicode": "e64d",
+      "unicode_decimal": 58957
+    },
+    {
+      "icon_id": "5303378",
+      "name": "列表",
+      "font_class": "list",
+      "unicode": "e64b",
+      "unicode_decimal": 58955
+    },
+    {
+      "icon_id": "5840604",
+      "name": "loading",
+      "font_class": "loading",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    }
+  ]
+}

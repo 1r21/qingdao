@@ -59,20 +59,6 @@ const AudioPlayer = ({ article, onClose }) => {
   const playbackState = usePlaybackState();
   const progress = useProgress();
 
-  const [trackArtwork, setTrackArtwork] = useState();
-  const [trackTitle, setTrackTitle] = useState();
-  const [trackArtist, setTrackArtist] = useState();
-
-  useTrackPlayerEvents([Event.PlaybackTrackChanged], async event => {
-    if (event.type === Event.PlaybackTrackChanged && event.nextTrack != null) {
-      const track = await TrackPlayer.getTrack(event.nextTrack);
-      const { title, artist, artwork } = track || {};
-      setTrackTitle(title);
-      setTrackArtist(artist);
-      setTrackArtwork(artwork);
-    }
-  });
-
   useEffect(() => {
     setup(article);
   }, [article]);
@@ -85,9 +71,9 @@ const AudioPlayer = ({ article, onClose }) => {
         </Pressable>
       </SafeAreaView>
       <View style={styles.contentContainer}>
-        <Image style={styles.artwork} source={{ uri: `${trackArtwork}` }} />
-        <Text style={styles.titleText}>{trackTitle}</Text>
-        <Text style={styles.artistText}>{trackArtist}</Text>
+        <Image style={styles.artwork} source={{ uri: article.cover }} />
+        <Text style={styles.titleText}>{article.title}</Text>
+        <Text style={styles.artistText}>{article.date}</Text>
         <Slider
           style={styles.progressContainer}
           value={progress.position}

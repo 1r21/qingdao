@@ -10,6 +10,7 @@ import {
   ActivityIndicator,
 } from 'react-native';
 
+import TrackPlayer, { State } from 'react-native-track-player';
 import { getNewsById } from '../services';
 import { parseText } from '../utils';
 
@@ -84,7 +85,18 @@ const ArticleDetail = ({ navigation, route }) => {
           right: 35,
           zIndex: 100,
         }}>
-        <Pressable onPress={() => setModalVisible(true)}>
+        <Pressable
+          onPress={async () => {
+            const state = await TrackPlayer.getState();
+            if (state === State.Playing) {
+              const trackIndex = await TrackPlayer.getCurrentTrack();
+              const trackObject = await TrackPlayer.getTrack(trackIndex);
+              if (trackObject.url !== article.src) {
+                await TrackPlayer.stop();
+              }
+            }
+            setModalVisible(true);
+          }}>
           <Icon name="play" size={30} color="#fff" />
         </Pressable>
         <Pressable onPress={() => navigation.navigate('Home')}>

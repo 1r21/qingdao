@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import {
   Text,
   View,
+  Alert,
   Image,
   Pressable,
   VirtualizedList,
@@ -37,9 +38,13 @@ const Articles = ({ navigation }) => {
   const [articles, setArticles] = useState([]);
 
   useEffect(() => {
-    getNews().then(({ list }) => {
-      setArticles(list);
-    });
+    getNews()
+      .then(({ list }) => {
+        setArticles(list);
+      })
+      .catch(err => {
+        Alert.alert(err);
+      });
   }, []);
 
   if (articles.length === 0) {

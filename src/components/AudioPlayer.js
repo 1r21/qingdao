@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import {
   Text,
   View,
@@ -10,37 +10,13 @@ import {
 } from 'react-native';
 import Slider from '@react-native-community/slider';
 import TrackPlayer, {
-  Event,
   State,
-  Capability,
   useProgress,
   usePlaybackState,
-  useTrackPlayerEvents,
 } from 'react-native-track-player';
 
 import Icon from './Icon';
-
-const setup = async ({ title, src, date, cover }) => {
-  await TrackPlayer.setupPlayer();
-  await TrackPlayer.updateOptions({
-    stopWithApp: true,
-    capabilities: [
-      Capability.Play,
-      Capability.Pause,
-      Capability.SkipToNext,
-      Capability.SkipToPrevious,
-      Capability.Stop,
-    ],
-    compactCapabilities: [Capability.Play, Capability.Pause],
-  });
-
-  await TrackPlayer.add({
-    url: src,
-    title,
-    artist: date,
-    artwork: cover,
-  });
-};
+import Loading from './Loading';
 
 const togglePlayback = async playbackState => {
   const currentTrack = await TrackPlayer.getCurrentTrack();
@@ -58,10 +34,6 @@ const togglePlayback = async playbackState => {
 const AudioPlayer = ({ article, onClose }) => {
   const playbackState = usePlaybackState();
   const progress = useProgress();
-
-  useEffect(() => {
-    setup(article);
-  }, [article]);
 
   return (
     <View style={styles.screenContainer}>
@@ -91,9 +63,7 @@ const AudioPlayer = ({ article, onClose }) => {
             {new Date(progress.position * 1000).toISOString().substr(14, 5)}
           </Text>
           <Text style={styles.progressLabelText}>
-            {new Date((progress.duration - progress.position) * 1000)
-              .toISOString()
-              .substr(14, 5)}
+            {new Date(progress.duration * 1000).toISOString().substr(14, 5)}
           </Text>
         </View>
       </View>
@@ -102,11 +72,15 @@ const AudioPlayer = ({ article, onClose }) => {
           <Icon name="prev" size={40} color="#FFD479" />
         </Pressable>
         <Pressable onPress={() => togglePlayback(playbackState)}>
-          <Icon
-            name={playbackState === State.Playing ? 'pause' : 'play'}
-            size={50}
-            color="#FFD479"
-          />
+          {[State.Connecting, State.Buffering].includes(playbackState) ? (
+            <Loading />
+          ) : (
+            <Icon
+              name={playbackState === State.Playing ? 'pause' : 'play'}
+              size={50}
+              color="#FFD479"
+            />
+          )}
         </Pressable>
         <Pressable onPress={() => TrackPlayer.skipToNext()}>
           <Icon name="next" size={40} color="#FFD479" />

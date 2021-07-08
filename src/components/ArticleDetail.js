@@ -3,6 +3,7 @@ import {
   View,
   Text,
   Modal,
+  Alert,
   Platform,
   Pressable,
   VirtualizedList,
@@ -10,12 +11,34 @@ import {
   ActivityIndicator,
 } from 'react-native';
 
-import TrackPlayer, { State } from 'react-native-track-player';
+import TrackPlayer, { State, Capability } from 'react-native-track-player';
 import { getNewsById } from '../services';
 import { parseText } from '../utils';
 
 import AudioPlayer from './AudioPlayer';
 import Icon from './Icon';
+
+export const audioInit = async ({ title, src, date, cover }) => {
+  await TrackPlayer.setupPlayer();
+  await TrackPlayer.updateOptions({
+    stopWithApp: true,
+    capabilities: [
+      Capability.Play,
+      Capability.Pause,
+      Capability.SkipToNext,
+      Capability.SkipToPrevious,
+      Capability.Stop,
+    ],
+    compactCapabilities: [Capability.Play, Capability.Pause],
+  });
+
+  await TrackPlayer.add({
+    url: src,
+    title,
+    artist: date,
+    artwork: cover,
+  });
+};
 
 const itemStyle = {
   fontSize: Platform.OS === 'ios' ? 18 : 16,
@@ -36,11 +59,16 @@ const ArticleDetail = ({ navigation, route }) => {
 
   const { id } = route.params;
   useEffect(() => {
-    getNewsById(id).then(result => {
-      const texts = parseText(result.transcript);
-      setFormatTexts(texts);
-      setArticle(result);
-    });
+    getNewsById(id)
+      .then(result => {
+        const texts = parseText(result.transcript);
+        setFormatTexts(texts);
+        setArticle(result);
+        audioInit(result);
+      })
+      .catch(err => {
+        Alert.alert(err);
+      });
   }, [id]);
 
   if (!article) {

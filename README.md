@@ -6,11 +6,13 @@ A news infomation application
 
 ## screenshot (ios)
 
-<img width="150" src="screenshots/splash.png" alt="qingdao logo">
-<img width="150" src="screenshots/home.png" alt="qingdao logo">
-<img width="150" src="screenshots/detail.png" alt="qingdao logo">
-<img width="150" src="screenshots/player.png" alt="qingdao logo">
+<p>
+  <img width="150" src="screenshots/splash.png" alt="qingdao logo">
+  <img width="150" src="screenshots/home.png" alt="qingdao logo">
+  <img width="150" src="screenshots/detail.png" alt="qingdao logo">
+  <img width="150" src="screenshots/player.png" alt="qingdao logo">
+</p>
 
-## QR Code
+## App QR Code
 [![qingdao](./screenshots/app-qrcode.png)](http://fir.1r21.cn/6g3v)
 

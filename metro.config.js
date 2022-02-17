@@ -6,6 +6,7 @@
 
 module.exports = {
   transformer: {
+    babelTransformerPath: require.resolve('./defineTransform.js'),
     getTransformOptions: async () => ({
       transform: {
         experimentalImportSupport: false,

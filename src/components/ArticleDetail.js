@@ -12,8 +12,8 @@ import {
 } from 'react-native';
 
 import TrackPlayer, { State, Capability } from 'react-native-track-player';
-import { getNewsById } from '../services';
-import { parseText } from '../utils';
+import { getNewsById } from '@1r21/api-h5';
+import { parseText } from '@1r21/util';
 
 import AudioPlayer from './AudioPlayer';
 import Icon from './Icon';

@@ -9,7 +9,7 @@ import {
   ActivityIndicator,
 } from 'react-native';
 
-import { getNews } from '../services';
+import { getNews } from '@1r21/api-h5';
 
 const Thumb = ({ uri, date, title }) => {
   const [cover, setCover] = useState('http://ai.1r21.cn/place/1016.jpg');
